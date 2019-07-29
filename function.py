@@ -4,7 +4,7 @@ class Function:
    def __init__(self, id_C, secret_C):
       self.id_C = id_C
       self.secret_C = secret_C
-      self.datanow=datetime(2019, 6, 8)
+      #self.datanow=datetime('<INSERT_Creation_date(year,month,day)_HERE>')
       self.token=''
    def displayToken(self):
      print ("Token : " + self.token)
@@ -35,9 +35,9 @@ class Function:
       response1 = requests.request("GET", url1, headers=headers1)
       if(response1.status_code == 200 ):
             response=json.loads(response1.text)
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -93,6 +93,26 @@ class Function:
             p=response["productivityCategory"]
             p=response["productivityCategory"]
             r=response["riskLevel"]
+            dt_string = datetime.now()
+            duration = dt_string - self.datanow
+            dayNow = dt_string.strftime("%d_%m_%Y")
+            if(duration.days > 30 ):
+                if(os.path.isfile('reportCsv/IntelixReport_URL_'+dayNow+'.csv')!=True):
+                   with open('reportCsv/IntelixReport_URL'+dayNow+'.csv', 'w', newline='') as csvfile:
+                        fieldnames = ['Date', 'URL', 'Type_Request']
+                        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                        writer.writeheader()
+                        writer.writerow({'Date': dayNow, 'URL': url, 'Type_Request': 'scanURL'})
+                else:
+                   valeurs =[dayNow, url, "scanURL"]
+                   with open('reportCsv/IntelixReport_URL_'+dayNow+'.csv', 'a') as csvfile:
+                       writer = csv.writer(csvfile)
+                       writer.writerow(valeurs)
+            else:
+                 valeurs =[dayNow,url,"scanURL"]
+                 with open('reportCsv/IntelixReport_URL_'+dayNow+'.csv', 'a') as csvfile:
+                       writer = csv.writer(csvfile)
+                       writer.writerow(valeurs)
             print("Category of Productivity : "+p)
             print("Risk : "+r)
             if ("securityCategory" in response):
@@ -113,6 +133,26 @@ class Function:
       response1 = requests.request("GET", url1, headers=headers1)
       if(response1.status_code == 200 ):
             response=json.loads(response1.text)
+            dt_string = datetime.now()
+            duration = dt_string - self.datanow
+            dayNow = dt_string.strftime("%d_%m_%Y")
+            if(duration.days > 30 ):
+                if(os.path.isfile('reportCsv/IntelixReport_Android_'+dayNow+'.csv')!=True):
+                   with open('reportCsv/IntelixReport_Android_'+dayNow+'.csv', 'w', newline='') as csvfile:
+                        fieldnames = ['Date', 'APK', 'Type_Request']
+                        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                        writer.writeheader()
+                        writer.writerow({'Date': dayNow, 'APK': apk, 'Type_Request': 'scanAPK'})
+                else:
+                   valeurs =[dayNow, apk, "scanAPK"]
+                   with open('reportCsv/IntelixReport_Android_'+dayNow+'.csv', 'a') as csvfile:
+                       writer = csv.writer(csvfile)
+                       writer.writerow(valeurs)
+            else:
+                 valeurs =[dayNow,apk,"scanAPK"]
+                 with open('reportCsv/IntelixReport_Android_'+dayNow+'.csv', 'a') as csvfile:
+                       writer = csv.writer(csvfile)
+                       writer.writerow(valeurs)
             a=response["reputationScore"]
             if a>=0 and a<=19:
               print("Malware");
@@ -146,26 +186,54 @@ class Function:
           'Host': "de.api.labs.sophos.com",
       }
       response1 = requests.request("GET", url1, headers=headers1)
-      response=json.loads(response1.text)
-      a=response["reputationScore"]
-      if a>=0 and a<=19:
+      if(response1.status_code == 200 ):
+            response=json.loads(response1.text)
+            dt_string = datetime.now()
+            duration = dt_string - self.datanow
+            dayNow = dt_string.strftime("%d_%m_%Y")
+            if(duration.days > 30 ):
+                if(os.path.isfile('reportCsv/IntelixReport_Android_'+dayNow+'.csv')!=True):
+                   with open('reportCsv/IntelixReport_Android_'+dayNow+'.csv', 'w', newline='') as csvfile:
+                        fieldnames = ['Date', 'APK', 'Type_Request']
+                        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                        writer.writeheader()
+                        writer.writerow({'Date': dayNow, 'APK': apk, 'Type_Request': 'scanAPKPackage'})
+                else:
+                   valeurs =[dayNow, apk, "scanAPKPackage"]
+                   with open('reportCsv/IntelixReport_Android_'+dayNow+'.csv', 'a') as csvfile:
+                       writer = csv.writer(csvfile)
+                       writer.writerow(valeurs)
+            else:
+                 valeurs =[dayNow,apk,"scanAPKPackage"]
+                 with open('reportCsv/IntelixReport_Android_'+dayNow+'.csv', 'a') as csvfile:
+                       writer = csv.writer(csvfile)
+                       writer.writerow(valeurs)
+            a=response["reputationScore"]
+            if a>=0 and a<=19:
               print("Malware");
               if("detectionName" in response):
                  print("DetectionName : "+response["detectionName"]);
-      elif a>=20 and a<=29:
+            elif a>=20 and a<=29:
               print("PUA");
               if("detectionName" in response):
                  print("DetectionName : "+response["detectionName"]);
-      elif a>=30 and a<=69:
+            elif a>=30 and a<=69:
               print("Unknown/suspicious");
               if("detectionName" in response):
                  print("DetectionName : "+response["detectionName"]);
-      elif a>=70 and a<=100:
+            elif a>=70 and a<=100:
               print("Known good");
               if("detectionName" in response):
                  print("DetectionName : "+response["detectionName"]);
-      else :
+            else :
               print(" Not found");
+      elif(response1.status_code == 401 ):
+           print("Token has expired");
+      elif(response1.status_code == 404 ):
+            response=json.loads(response1.text)
+            print(response["error"]);
+      else:
+           print ("Your token has already been expired or it's not for this service.")
    def scanFileStatic(self,file,token):
         url = "https://de.api.labs.sophos.com/analysis/file/static/v1"
         headers = {'Authorization': token}
@@ -177,9 +245,9 @@ class Function:
             fichier = open('static/'+response['report']['analysis_subject']['sha256']+".json", "w")
             fichier.write(json.dumps(r, indent=4, sort_keys=True))
             fichier.close()
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -239,9 +307,9 @@ class Function:
             fichier = open('static/'+response['report']['analysis_subject']['sha256']+".json", "w")
             fichier.write(json.dumps(r, indent=4, sort_keys=True))
             fichier.close()
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -298,9 +366,9 @@ class Function:
             fichier = open('static/'+response['report']['analysis_subject']['sha256']+".json", "w")
             fichier.write(json.dumps(response, indent=4, sort_keys=True))
             fichier.close()
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -309,12 +377,12 @@ class Function:
                         writer.writeheader()
                         writer.writerow({'Date': dayNow, 'Sha256': response['report']['analysis_subject']['sha256'], 'Type_Request': 'reportFileStatic'})
                 else:
-                   valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"reportFileStatic"]
+                   valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"reportFileStatic"]
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
             else:
-                 valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"reportFileStatic"]
+                 valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"reportFileStatic"]
                  with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
@@ -343,9 +411,9 @@ class Function:
             fichier = open('dynamic/'+response['report']['analysis_subject']['sha256']+".json", "w")
             fichier.write(json.dumps(r, indent=4, sort_keys=True))
             fichier.close()
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -354,12 +422,12 @@ class Function:
                         writer.writeheader()
                         writer.writerow({'Date': dayNow, 'Sha256': response['report']['analysis_subject']['sha256'], 'Type_Request': 'scanFileDynamic'})
                 else:
-                   valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"scanFileDynamic"]
+                   valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"scanFileDynamic"]
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
             else:
-                 valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"scanFileDynamic"]
+                 valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"scanFileDynamic"]
                  with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
@@ -406,9 +474,9 @@ class Function:
             fichier = open('dynamic/'+response['report']['analysis_subject']['sha256']+".json", "w")                         
             fichier.write(json.dumps(response, indent=4, sort_keys=True))
             fichier.close()
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -417,12 +485,12 @@ class Function:
                         writer.writeheader()
                         writer.writerow({'Date': dayNow, 'Sha256': response['report']['analysis_subject']['sha256'], 'Type_Request': 'scanFileDynamicJobID'})
                 else:
-                   valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"scanFileDynamicJobID"]
+                   valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"scanFileDynamicJobID"]
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
             else:
-                 valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"scanFileDynamicJobID"]
+                 valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"scanFileDynamicJobID"]
                  with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
@@ -465,9 +533,9 @@ class Function:
             fichier = open('dynamic/'+response['report']['analysis_subject']['sha256']+".json", "w")                    
             fichier.write(json.dumps(response, indent=4, sort_keys=True))
             fichier.close()
-            dt_string = datatime.now()
+            dt_string = datetime.now()
             duration = dt_string - self.datanow
-            dayNow = now.strftime("%d_%m_%Y")
+            dayNow = dt_string.strftime("%d_%m_%Y")
             if(duration.days > 30 ):
                 if(os.path.isfile('reportCsv/IntelixReport_'+dayNow+'.csv')!=True):
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'w', newline='') as csvfile:
@@ -476,12 +544,12 @@ class Function:
                         writer.writeheader()
                         writer.writerow({'Date': dayNow, 'Sha256':response['report']['analysis_subject']['sha256'], 'Type_Request': 'reportFileDynamic'})
                 else:
-                   valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"reportFileDynamic"]
+                   valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"reportFileDynamic"]
                    with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
             else:
-                 valeurs =[dt_string,response['report']['analysis_subject']['sha256'] ,"reportFileDynamic"]
+                 valeurs =[dayNow,response['report']['analysis_subject']['sha256'] ,"reportFileDynamic"]
                  with open('reportCsv/IntelixReport_'+dayNow+'.csv', 'a') as csvfile:
                        writer = csv.writer(csvfile)
                        writer.writerow(valeurs)
