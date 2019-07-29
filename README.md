@@ -47,20 +47,20 @@ hash or file giving a Json file that includes the analysis results.
        -reportd  DYNAMICREPORT, --dynamicReport DYNAMICREPORT
                         SophosLabs Dynamic File Analysis API (EAP). Sha256 !
       
-      Example SophosLabs Malware and Productivity URL Lookup API :
+      #Example SophosLabs Malware and Productivity URL Lookup API :
         
         SophosLabs-Intelix > Intelix.py -u sophostest.com%2Fmalware
         Category of Productivity : PROD_SPYWARE_AND_MALWARE
         Risk : HIGH
         Category of Securite : SEC_MALWARE_REPOSITORY
       
-      Example SophosLabs File Malware Cloud Lookup API :
+      #Example SophosLabs File Malware Cloud Lookup API :
         
         SophosLabs-Intelix >Intelix.py -r d70a85f3ef7494f85a6bf35e60c666c8e2335563c7ad7e6d8ae69f058173ce2b
         Malware
         DetectionName : Mal/Generic-S
 
-      Example SophosLabs Static File Analysis API
+      #Example SophosLabs Static File Analysis API
       
         SophosLabs-Intelix >Intelix.py -s fichier.doc 
           Done
