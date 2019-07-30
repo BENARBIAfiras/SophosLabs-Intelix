@@ -19,13 +19,13 @@ def main():
     parser = argparse.ArgumentParser(description = "Test de SophosLabs Intelix !")
     # defining arguments for parser object 
     parser.add_argument("-u", "--url", type = str, nargs = 1, default = None, help = "The URL encoded URL to look up . URL " )   
-    parser.add_argument("-r", "--sha256", type = str, nargs = 1, default = None, help = "SophosLabs File Malware Cloud Lookup API (EAP). Hash function !") 
+    parser.add_argument("-report", "--sha256", type = str, nargs = 1, default = None, help = "SophosLabs File Malware Cloud Lookup API (EAP). Hash function !") 
     parser.add_argument("-apk", "--android", type = str, nargs = 1,help = "SophosLabs Android Malware App Lookup API (EAP). APK")
     parser.add_argument("-apkpac", "--androidPackage", type = str, nargs = 2,help = "SophosLabs Android Malware App Lookup API (EAP). APK Package")
     parser.add_argument("-s", "--static", type = str, nargs = 1,help = "SophosLabs Static File Analysis API (EAP).  File Path !")
-    parser.add_argument("-reports", "--staticReport", type = str, nargs = 1,help = "SophosLabs Static File Analysis API (EAP).  Sha256 !") 
+    parser.add_argument("-rs", "--staticReport", type = str, nargs = 1,help = "SophosLabs Static File Analysis API (EAP).  Sha256 !") 
     parser.add_argument("-d", "--dynamic", type = str, nargs = 1,help = "SophosLabs Dynamic File Analysis API (EAP). File Path !")   
-    parser.add_argument("-reportd ", "--dynamicReport", type = str, nargs = 1,help = "SophosLabs Dynamic File Analysis API (EAP). Sha256 !")
+    parser.add_argument("-rd ", "--dynamicReport", type = str, nargs = 1,help = "SophosLabs Dynamic File Analysis API (EAP). Sha256 !")
 
     # parse the arguments from standard input 
     args = parser.parse_args() 
