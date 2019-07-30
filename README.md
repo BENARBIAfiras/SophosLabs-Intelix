@@ -239,13 +239,13 @@ hash or file giving a Json file that includes the analysis results.
                   "submission": "2019-07-23T08:13:12Z"
               }
           }
-# Example SophosLabs Static File Analysis API :
+# Example SophosLabs Dynamic File Analysis API :
       
-        SophosLabs-Intelix >Intelix.py -s fichier.doc 
+        SophosLabs-Intelix >Intelix.py -d fichier.doc 
           Done
           
     Result Analysis : 
         Screenshots :
-        ![dynamic](https://github.com/BENARBIAfiras/hi/blob/master/image.svg)
+![dynamic](https://github.com/BENARBIAfiras/hi/blob/master/image.svg)
 
         
