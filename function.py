@@ -91,7 +91,7 @@ class Function:
             dt_string = datetime.now()
             dayNow = dt_string.strftime("%m_%Y")
             if(os.path.isfile('reportCsv/IntelixReport_URL_'+dayNow+'.csv')!=True):
-                   with open('reportCsv/IntelixReport_URL'+dayNow+'.csv', 'w', newline='') as csvfile:
+                   with open('reportCsv/IntelixReport_URL_'+dayNow+'.csv', 'w', newline='') as csvfile:
                         fieldnames = ['Date', 'URL', 'Type_Request']
                         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                         writer.writeheader()
