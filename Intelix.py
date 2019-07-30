@@ -57,7 +57,7 @@ def main():
                     fichier.close()
                     t= fichier.readlines()
                     fichier.close()
-            SLIntelix.scanFile(h,t[0])          
+            SLIntelix.getFileByHash(h,t[0])          
     #SophosLabs Android Malware App Lookup API (EAP)       
     elif args.android: 
         apk=args.android[0]
