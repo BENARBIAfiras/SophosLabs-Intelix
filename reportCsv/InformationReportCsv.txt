@@ -1,0 +1,1 @@
+In this folder, the requests are stored in csv files for Monthly.
