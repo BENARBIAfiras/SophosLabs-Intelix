@@ -1,0 +1,1 @@
+In this folder,  the Dynamic analysis results are be recorded leading to limited requests for API .
