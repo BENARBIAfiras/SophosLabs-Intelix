@@ -13,7 +13,6 @@ hash or file giving a Json file that includes the analysis results.
           .https://www.sophos.com/en-us/medialibrary/PDFs/factsheets/sophoslabs-intelix-ds.pdf?cmp=35051
     -AWS Marketplace : https://aws.amazon.com/marketplace/pp/B07SLZPMCS
     
-
 # Example  : 
 
     SophosLabs-Intelix >Intelix.py -h
@@ -240,3 +239,13 @@ hash or file giving a Json file that includes the analysis results.
                   "submission": "2019-07-23T08:13:12Z"
               }
           }
+# Example SophosLabs Static File Analysis API :
+      
+        SophosLabs-Intelix >Intelix.py -s fichier.doc 
+          Done
+          
+    Result Analysis : 
+        Screenshots :
+        ![dynamic](https://github.com/BENARBIAfiras/hi/blob/master/image.svg)
+
+        
