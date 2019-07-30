@@ -7,6 +7,7 @@ class Function:
       self.token=''
    def displayToken(self):
      print ("Token : " + self.token)
+   # Authentication endpoint
    def Authentication(self) :
         data_string =self.id_C+':'+self.secret_C
         data_bytes = data_string.encode("utf-8")
@@ -25,6 +26,7 @@ class Function:
            return self.token;
         else:
            return "Invalid_client";
+   # Get file hash categorization
    def getFileByHash(self,sha256,token):
       url1 = "https://de.api.labs.sophos.com/lookup/files/v1/"+sha256
       headers1 = {
@@ -76,6 +78,7 @@ class Function:
             print(response["error"])
       else:
            print ("Your token has already been expired or it's not for this service.")
+   # Get URL categorization
    def scanURL(self,url,token):
       url1 = "https://de.api.labs.sophos.com/lookup/urls/v1/"+url
       headers1 = {
@@ -114,6 +117,7 @@ class Function:
                print ("The requested URL does not exist")
       else:
               print ("Your token has already been expired or it's not for this service.")
+   # Get APK categorization
    def scanAPK(self,apk,token):
       url1 = "https://de.api.labs.sophos.com/lookup/apk/v1/"+apk
       headers1 = {
@@ -164,6 +168,7 @@ class Function:
             print(response["error"]);
       else:
            print ("Your token has already been expired or it's not for this service.")
+   # Get APK categorization
    def scanAPKPackage(self,apk,token,package):
       url1 = "https://de.api.labs.sophos.com/lookup/apk/v1/"+apk+"/"+package
       headers1 = {
@@ -214,7 +219,8 @@ class Function:
             print(response["error"]);
       else:
            print ("Your token has already been expired or it's not for this service.")
-   def scanFileStatic(self,file,token):
+# Submit a file for static analysis
+def scanFileStatic(self,file,token):
         url = "https://de.api.labs.sophos.com/analysis/file/static/v1"
         headers = {'Authorization': token}
         response1 = requests.post(url, headers=headers, files={"file": open(file, "rb")})
@@ -271,6 +277,7 @@ class Function:
             r=response["error"]
             t=True
             return t,r
+   # Get a report by job id
    def scanFileStaticJobID(self,jobid,token):
         url = "https://de.api.labs.sophos.com/analysis/file/static/v1/reports/"+jobid
         headers = {'Authorization': token}
@@ -326,6 +333,7 @@ class Function:
             t=True
             r=response
             return t,r
+   # Get a report by file hash
    def reportFileStatic(self,sha,token):
         url = "https://de.api.labs.sophos.com/analysis/file/static/v1/reports"
         querystring = {"sha256":sha}
@@ -365,6 +373,7 @@ class Function:
         else:
             response=json.loads(response1.text)
             print(response["error"])
+   # Submit a file for dynamic analysis
    def scanFileDynamic(self,file,token):
         url = "https://de.api.labs.sophos.com/analysis/file/dynamic/v1"
         headers = {'Authorization': token}
@@ -422,7 +431,7 @@ class Function:
             r=response["error"]
             t=True
             return t,r
-
+   # Get a report by job id
    def scanFileDynamicJobID(self,jobid,token):
         url = "https://de.api.labs.sophos.com/analysis/file/dynamic/v1/reports/"+jobid
         headers = {'Authorization': token}
@@ -478,6 +487,7 @@ class Function:
             t=True
             r=response
             return t,r
+   # Get a report by file hash
    def reportFileDynamic(self,sha,token):
         url = "https://de.api.labs.sophos.com/analysis/file/dynamic/v1/reports"
         querystring = {"sha256":sha}
