@@ -19,32 +19,32 @@ hash or file giving a Json file that includes the analysis results.
     SophosLabs-Intelix >Intelix.py -h
     usage: test.py [-h] 
                    [-u URL]
-                   [-r Sha256]
+                   [-report Sha256]
                    [-apk ANDROID]
                    [-apkpac ANDROIDPACKAGE ANDROIDPACKAGE]
                    [-s STATIC]
-                   [-reports STATICREPORT]
+                   [-rs STATICREPORT]
                    [-d DYNAMIC]
-                   [-reportd  DYNAMICREPORT]
+                   [-rd  DYNAMICREPORT]
                   
     Test de SophosLabs Intelix !
 
     optional arguments:
       -h, --help            show this help message and exit
       -u URL, --url URL     The URL encoded URL to look up . URL
-      -r Sha256, --sha256 Sha256          SophosLabs File Malware Cloud Lookup API (EAP). Hash function !
+      -report Sha256, --sha256 Sha256          SophosLabs File Malware Cloud Lookup API (EAP). Hash function !
       -apk ANDROID, --android ANDROID
                             SophosLabs Android Malware App Lookup API (EAP). APK
       -apkpac ANDROIDPACKAGE ANDROIDPACKAGE, --androidPackage ANDROIDPACKAGE ANDROIDPACKAGE
                             SophosLabs Android Malware App Lookup API (EAP). APK Package
       -s STATIC, --static STATIC
                             SophosLabs Static File Analysis API (EAP). File Path !
-       -reports STATICREPORT, --staticReport STATICREPORT
+       -rs STATICREPORT, --staticReport STATICREPORT
                         SophosLabs Static File Analysis API (EAP). Sha256 !
        -d DYNAMIC, --dynamic DYNAMIC
                         SophosLabs Dynamic File Analysis API (EAP). File Path
                         !
-       -reportd  DYNAMICREPORT, --dynamicReport DYNAMICREPORT
+       -rd  DYNAMICREPORT, --dynamicReport DYNAMICREPORT
                         SophosLabs Dynamic File Analysis API (EAP). Sha256 !
       
 # Example SophosLabs Malware and Productivity URL Lookup API :
@@ -56,7 +56,7 @@ hash or file giving a Json file that includes the analysis results.
       
 # Example SophosLabs File Malware Cloud Lookup API :
         
-        SophosLabs-Intelix >Intelix.py -r d70a85f3ef7494f85a6bf35e60c666c8e2335563c7ad7e6d8ae69f058173ce2b
+        SophosLabs-Intelix >Intelix.py -report d70a85f3ef7494f85a6bf35e60c666c8e2335563c7ad7e6d8ae69f058173ce2b
         Malware
         DetectionName : Mal/Generic-S
 
@@ -65,7 +65,7 @@ hash or file giving a Json file that includes the analysis results.
         SophosLabs-Intelix >Intelix.py -s fichier.doc 
           Done
           
-        SophosLabs-Intelix >Intelix.py -reports 7472cfa6308f8f4712a63d9e44bbbfbb0e7cc8f03ec3a787dcb783d578ea3713
+        SophosLabs-Intelix >Intelix.py -rs 7472cfa6308f8f4712a63d9e44bbbfbb0e7cc8f03ec3a787dcb783d578ea3713
           Sha256 Exists
           {
               "jobId": "649e729e83d8bb06292bc50bb4139156",
