@@ -219,8 +219,8 @@ class Function:
             print(response["error"]);
       else:
            print ("Your token has already been expired or it's not for this service.")
-# Submit a file for static analysis
-def scanFileStatic(self,file,token):
+   # Submit a file for static analysis
+   def scanFileStatic(self,file,token):
         url = "https://de.api.labs.sophos.com/analysis/file/static/v1"
         headers = {'Authorization': token}
         response1 = requests.post(url, headers=headers, files={"file": open(file, "rb")})
